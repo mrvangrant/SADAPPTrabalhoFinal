@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class TipoMaterial
+    public class TipoMaterial
     {
+        public int TMID { get; set; }
+        public string DescTM { get; set; } = string.Empty;
     }
 }

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class CodigoPostal
+    public class CodigoPostal
     {
+        public int CP { get; set; }
+        public string Localidade { get; set; } = string.Empty;
     }
 }

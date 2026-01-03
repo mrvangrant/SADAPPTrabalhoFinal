@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class Inspecoes
+    public class Inspecoes
     {
+        public int Vid { get; set; } // PK part, FK to Veiculo
+        public int MatID { get; set; } // PK part, FK to Material
+        public System.DateTime? DataInsp { get; set; }
     }
 }

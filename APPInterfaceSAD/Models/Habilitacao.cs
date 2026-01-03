@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class Habilitacao
+    public class Habilitacao
     {
+        public int Cid { get; set; } // PK part, FK to Classe
+        public int CondutorID { get; set; } // PK part, FK to Condutor
+        public System.DateTime? DataHab { get; set; }
     }
 }

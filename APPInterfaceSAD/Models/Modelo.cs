@@ -8,8 +8,8 @@ namespace APPInterfaceSAD.Models
 {
     public class Modelo
     {
-        public int ClienteId { get; set; }
-        public string Nome { get; set; } = "";
-        public string NIF { get; set; } = "";
+        public int ModID { get; set; }
+        public string DescModelo { get; set; } = string.Empty;
+        public int MaID { get; set; } // FK to Marca
     }
 }

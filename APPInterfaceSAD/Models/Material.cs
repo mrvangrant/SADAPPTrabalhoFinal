@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class Material
+    public class Material
     {
+        public int MatID { get; set; }
+        public string DescMat { get; set; } = string.Empty;
+        public int TMID { get; set; } // FK to TipoMaterial
     }
 }

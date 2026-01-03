@@ -12,11 +12,11 @@ namespace APPInterfaceSAD.Services
         {
             string sql =
                 "SELECT v.Vid, v.NomeVeiculo, v.lotacao, v.tara, v.Rua, v.Estado, " +
-                "       v.CP AS CP, " + // show CP in grid
-                "       c.DesClasse AS Classe, m.DescModelo AS Modelo, cp.Localidade AS Localidade " +
+                "       c.DesClasse AS Classe, m.DescModelo AS Modelo, ma.DescMarca AS Marca, cp.Localidade AS Localidade " +
                 "FROM Veiculo v " +
                 "INNER JOIN Classe c ON v.Cid = c.Cid " +
                 "INNER JOIN Modelo m ON v.ModID = m.ModID " +
+                "INNER JOIN Marca ma ON m.MaID = ma.MaID " +
                 "INNER JOIN CodigoPostal cp ON v.CPCP = cp.CP";
 
             using (SqlConnection con = new SqlConnection(Database.ConnectionString))
@@ -157,6 +157,95 @@ namespace APPInterfaceSAD.Services
                 }
             }
         }
+
+        // Ensures a modelo exists for the given base name; if exact exists, returns it.
+        // Otherwise creates with next numeric suffix (e.g., "Hilux2", "Hilux3"). Requires a valid MaID.
+        public int EnsureMarcaAuto(string descMarca)
+        {
+            if (string.IsNullOrWhiteSpace(descMarca))
+                throw new ArgumentException("Brand name is required.", nameof(descMarca));
+
+            using (var con = new SqlConnection(Database.ConnectionString))
+            {
+                con.Open();
+                using (var chk = new SqlCommand("SELECT MaID FROM Marca WHERE DescMarca = @name", con))
+                {
+                    chk.Parameters.AddWithValue("@name", descMarca);
+                    var id = chk.ExecuteScalar();
+                    if (id != null && id != DBNull.Value)
+                        return (int)id;
+                }
+
+                using (var ins = new SqlCommand(
+                    "INSERT INTO Marca (DescMarca) OUTPUT INSERTED.MaID VALUES (@name)", con))
+                {
+                    ins.Parameters.AddWithValue("@name", descMarca);
+                    return (int)ins.ExecuteScalar();
+                }
+            }
+        }
+
+        // Existing EnsureModeloAuto: adapted to use MaID resolved from brand
+        public int EnsureModeloAuto(string baseDescModelo, int maId)
+        {
+            if (string.IsNullOrWhiteSpace(baseDescModelo))
+                throw new ArgumentException("Model name is required.", nameof(baseDescModelo));
+            if (maId <= 0) throw new ArgumentException("Invalid Marca ID.", nameof(maId));
+
+            using (var con = new SqlConnection(Database.ConnectionString))
+            {
+                con.Open();
+
+                // Check exact match within same brand
+                using (var chkExact = new SqlCommand(
+                    "SELECT ModID FROM Modelo WHERE DescModelo = @name AND MaID = @ma", con))
+                {
+                    chkExact.Parameters.AddWithValue("@name", baseDescModelo);
+                    chkExact.Parameters.AddWithValue("@ma", maId);
+                    var id = chkExact.ExecuteScalar();
+                    if (id != null && id != DBNull.Value)
+                        return (int)id;
+                }
+
+                // Find max numeric suffix for this brand + base name
+                int maxSuffix = 1;
+                using (var cmd = new SqlCommand(
+                    "SELECT DescModelo FROM Modelo WHERE MaID = @ma AND DescModelo LIKE @prefix + '%'", con))
+                {
+                    cmd.Parameters.AddWithValue("@ma", maId);
+                    cmd.Parameters.AddWithValue("@prefix", baseDescModelo);
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var name = rdr.GetString(0).Trim();
+                            if (string.Equals(name, baseDescModelo, StringComparison.OrdinalIgnoreCase))
+                            {
+                                maxSuffix = Math.Max(maxSuffix, 1);
+                                continue;
+                            }
+                            if (name.StartsWith(baseDescModelo + " ", StringComparison.OrdinalIgnoreCase))
+                            {
+                                var tail = name.Substring(baseDescModelo.Length).Trim();
+                                if (int.TryParse(tail, out var n)) maxSuffix = Math.Max(maxSuffix, n);
+                            }
+                        }
+                    }
+                }
+
+                var nextName = $"{baseDescModelo} {maxSuffix + 1}";
+                using (var ins = new SqlCommand(
+                    "INSERT INTO Modelo (DescModelo, MaID) OUTPUT INSERTED.ModID VALUES (@name, @ma)", con))
+                {
+                    ins.Parameters.AddWithValue("@name", nextName);
+                    ins.Parameters.AddWithValue("@ma", maId);
+                    return (int)ins.ExecuteScalar();
+                }
+            }
+        }
+
+        // Existing insert/update methods unchanged (they’ll receive ModID from the form)
+        // ...
 
         private static void ValidateForeignKeys(SqlConnection con, int cid, int modId, int cpcp)
         {

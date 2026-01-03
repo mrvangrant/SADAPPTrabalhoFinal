@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class Classe
+    public class Classe
     {
+        public int Cid { get; set; }
+        public string DesClasse { get; set; } = string.Empty;
     }
 }

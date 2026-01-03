@@ -14,8 +14,6 @@ namespace APPInterfaceSAD
         public Form1()
         {
             InitializeComponent();
-
-            // Wire up button handlers if not already wired in designer
             this.buttonInserir.Click += buttonInserir_Click;
             this.btAtualizar.Click += btAtualizar_Click;
             this.dataGridViewVeiculos.SelectionChanged += dataGridViewVeiculos_SelectionChanged;
@@ -25,19 +23,16 @@ namespace APPInterfaceSAD
         {
             base.OnLoad(e);
 
-            // Populate combos from database
             try
             {
-                // Classes
                 var classes = _veiculos.ObterClasses();
                 cbClasse.DisplayMember = "DesClasse";
                 cbClasse.ValueMember = "Cid";
                 cbClasse.DataSource = classes;
 
-                // Estado options (static or could be fetched from DB if you add a table)
                 cbEstado.Items.Clear();
                 cbEstado.Items.AddRange(new object[] { "Operacional", "Oficina", "Abatido" });
-                cbEstado.SelectedIndex =0;
+                cbEstado.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -61,7 +56,6 @@ namespace APPInterfaceSAD
             }
         }
 
-        // Populate inputs when a row is selected
         private void dataGridViewVeiculos_SelectionChanged(object sender, EventArgs e)
         {
             var rowView = dataGridViewVeiculos.CurrentRow?.DataBoundItem as DataRowView;
@@ -76,8 +70,9 @@ namespace APPInterfaceSAD
             var idx = cbEstado.FindStringExact(estado);
             cbEstado.SelectedIndex = idx >= 0 ? idx : 0;
 
-            // Now that CP is in the grid, reflect it into the textbox
-            textBoxCP.Text = (rowView["CP"] is int cpVal) ? cpVal.ToString() : "";
+            // reflect modelo and marca names
+            textBoxModelo.Text = rowView["Modelo"] as string ?? "";
+            textBoxMarca.Text = rowView["Marca"] as string ?? "";
         }
 
         private void btAtualizar_Click(object sender, EventArgs e)
@@ -98,6 +93,36 @@ namespace APPInterfaceSAD
                 return;
             }
 
+            var nomeMarca = textBoxMarca.Text?.Trim();
+            var nomeModelo = textBoxModelo.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(nomeMarca))
+            {
+                MessageBox.Show(this, "Brand name is required.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxMarca.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(nomeModelo))
+            {
+                MessageBox.Show(this, "Model name is required.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxModelo.Focus();
+                return;
+            }
+
+            int maId, modId;
+            try
+            {
+                maId = _veiculos.EnsureMarcaAuto(nomeMarca);
+                modId = _veiculos.EnsureModeloAuto(nomeModelo, maId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Failed to resolve brand/model: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var v = new Veiculo
             {
                 Vid = vid,
@@ -107,14 +132,14 @@ namespace APPInterfaceSAD
                 Rua = textBoxRua.Text?.Trim(),
                 Estado = cbEstado.Text?.Trim(),
                 Cid = cbClasse.SelectedValue is int cidVal ? cidVal : 0,
-                ModID = 1,                // replace when you add a Modelo selector
-                CPCP = ParseNullableInt(textBoxCP.Text) ?? 0,
-                CP = ParseNullableInt(textBoxCP.Text),
+                ModID = modId,
+                CPCP = 1,
+                CP = null,
             };
 
-            if (string.IsNullOrWhiteSpace(v.NomeVeiculo) || v.Cid <= 0 || v.CPCP <= 0)
+            if (string.IsNullOrWhiteSpace(v.NomeVeiculo) || v.Cid <= 0 || v.ModID <= 0)
             {
-                MessageBox.Show(this, "Fill required fields (Nome, Classe, Código Postal).", "Validation",
+                MessageBox.Show(this, "Fill required fields (Nome, Classe, Modelo).", "Validation",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
@@ -138,15 +163,40 @@ namespace APPInterfaceSAD
             int? tara = ParseNullableInt(textBoxTara.Text);
             string estado = cbEstado.Text?.Trim();
             string rua = textBoxRua.Text?.Trim();
+            int cid = cbClasse.SelectedValue is int cidVal ? cidVal : 0;
 
-            int cid = cbClasse.SelectedValue is int cidVal ? cidVal :0;
+            var nomeMarca = textBoxMarca.Text?.Trim();
+            var nomeModelo = textBoxModelo.Text?.Trim();
+            if (string.IsNullOrWhiteSpace(nomeMarca))
+            {
+                MessageBox.Show(this, "Brand name is required.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxMarca.Focus();
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(nomeModelo))
+            {
+                MessageBox.Show(this, "Model name is required.", "Validation",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                textBoxModelo.Focus();
+                return;
+            }
 
-            // Get postal code from new textbox
-            int? cp = ParseNullableInt(textBoxCP.Text);
-            int cpcp = cp ??0; // required FK to CodigoPostal.CP
+            int maId, modId;
+            try
+            {
+                maId = _veiculos.EnsureMarcaAuto(nomeMarca);
+                modId = _veiculos.EnsureModeloAuto(nomeModelo, maId);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Failed to resolve brand/model: " + ex.Message, "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-            // UI currently has no model selector; placeholder until added
-            int modId =1;
+            int cpcp = 1;
+            int? cp = null;
 
             if (string.IsNullOrWhiteSpace(nomeVeiculo))
             {
@@ -155,18 +205,11 @@ namespace APPInterfaceSAD
                 textBoxNomeVeiculo.Focus();
                 return;
             }
-            if (cid <=0)
+            if (cid <= 0)
             {
                 MessageBox.Show(this, "Select a classe.", "Validation",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 cbClasse.DroppedDown = true;
-                return;
-            }
-            if (cpcp <=0)
-            {
-                MessageBox.Show(this, "Enter um código postal válido.", "Validation",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                textBoxCP.Focus();
                 return;
             }
 
@@ -189,16 +232,15 @@ namespace APPInterfaceSAD
                 MessageBox.Show(this, $"Inserted vehicle with ID {newId}.", "Success",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Clear inputs
                 textBoxNomeVeiculo.Clear();
                 textBoxLotação.Clear();
                 textBoxTara.Clear();
                 textBoxRua.Clear();
-                textBoxCP.Clear();
+                textBoxModelo.Clear();
+                textBoxMarca.Clear();
                 cbClasse.SelectedIndex = -1;
-                cbEstado.SelectedIndex =0;
+                cbEstado.SelectedIndex = 0;
 
-                // Refresh data
                 LoadGrid();
             }
             catch (Exception ex)
@@ -212,26 +254,6 @@ namespace APPInterfaceSAD
         {
             if (int.TryParse(s, out var n)) return n;
             return null;
-        }
-
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            // keep handler present to satisfy designer; implement if needed
-        }
-
-        private void buttonInserir_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBoxNomeVeiculo_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -72,7 +72,6 @@
             this.textBoxNomeVeiculo.Size = new System.Drawing.Size(193, 22);
             this.textBoxNomeVeiculo.TabIndex = 6;
             this.textBoxNomeVeiculo.Text = "Nome do Veiculo";
-            this.textBoxNomeVeiculo.TextChanged += new System.EventHandler(this.textBoxNomeVeiculo_TextChanged);
             // 
             // textBoxLotação
             // 
@@ -115,7 +114,7 @@
             this.buttonInserir.TabIndex = 15;
             this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = true;
-            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click_1);
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
             // 
             // btAtualizar
             // 
@@ -157,7 +156,7 @@
             this.textBoxCP.Name = "textBoxCP";
             this.textBoxCP.Size = new System.Drawing.Size(193, 22);
             this.textBoxCP.TabIndex = 20;
-            this.textBoxCP.Text = "Codigo Postal";
+            this.textBoxCP.Text = "Localidade";
             // 
             // labelNomeVeiculo
             // 
@@ -167,7 +166,6 @@
             this.labelNomeVeiculo.Size = new System.Drawing.Size(111, 16);
             this.labelNomeVeiculo.TabIndex = 21;
             this.labelNomeVeiculo.Text = "Nome do Veiculo";
-            this.labelNomeVeiculo.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelLot
             // 
@@ -237,9 +235,9 @@
             this.labelCP.AutoSize = true;
             this.labelCP.Location = new System.Drawing.Point(29, 389);
             this.labelCP.Name = "labelCP";
-            this.labelCP.Size = new System.Drawing.Size(92, 16);
+            this.labelCP.Size = new System.Drawing.Size(75, 16);
             this.labelCP.TabIndex = 29;
-            this.labelCP.Text = "Código Postal";
+            this.labelCP.Text = "Localidade";
             // 
             // Form1
             // 

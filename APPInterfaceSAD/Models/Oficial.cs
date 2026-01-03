@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    internal class Oficial
+    public class Oficial
     {
+        public int OficialID { get; set; }
+        public string NomeOficial { get; set; } = string.Empty;
+        public int CargoID { get; set; } // FK to Cargo
     }
 }

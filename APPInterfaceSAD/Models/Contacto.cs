@@ -8,5 +8,8 @@ namespace APPInterfaceSAD.Models
 {
     public class Contacto
     {
+        public int OficialID { get; set; }
+        public int TCID { get; set; } // FK to TipoContacto
+        public int? NumeroC { get; set; }
     }
 }
