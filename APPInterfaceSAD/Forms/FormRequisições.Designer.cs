@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.labelReq = new System.Windows.Forms.Label();
+            this.labelReqVeiculo = new System.Windows.Forms.Label();
+            this.labelReqCond = new System.Windows.Forms.Label();
+            this.labelReqOficial = new System.Windows.Forms.Label();
+            this.labelReqData = new System.Windows.Forms.Label();
+            this.buttonReqInserir = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
@@ -42,59 +42,59 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // labelReq
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 90);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.labelReq.AutoSize = true;
+            this.labelReq.Location = new System.Drawing.Point(259, 90);
+            this.labelReq.Name = "labelReq";
+            this.labelReq.Size = new System.Drawing.Size(83, 16);
+            this.labelReq.TabIndex = 0;
+            this.labelReq.Text = "Requisições";
             // 
-            // label2
+            // labelReqVeiculo
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(140, 168);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "label2";
+            this.labelReqVeiculo.AutoSize = true;
+            this.labelReqVeiculo.Location = new System.Drawing.Point(140, 168);
+            this.labelReqVeiculo.Name = "labelReqVeiculo";
+            this.labelReqVeiculo.Size = new System.Drawing.Size(52, 16);
+            this.labelReqVeiculo.TabIndex = 1;
+            this.labelReqVeiculo.Text = "Veiculo";
             // 
-            // label3
+            // labelReqCond
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(143, 220);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(44, 16);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "label3";
+            this.labelReqCond.AutoSize = true;
+            this.labelReqCond.Location = new System.Drawing.Point(143, 220);
+            this.labelReqCond.Name = "labelReqCond";
+            this.labelReqCond.Size = new System.Drawing.Size(61, 16);
+            this.labelReqCond.TabIndex = 2;
+            this.labelReqCond.Text = "Condutor";
             // 
-            // label4
+            // labelReqOficial
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(143, 267);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 16);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "label4";
+            this.labelReqOficial.AutoSize = true;
+            this.labelReqOficial.Location = new System.Drawing.Point(143, 267);
+            this.labelReqOficial.Name = "labelReqOficial";
+            this.labelReqOficial.Size = new System.Drawing.Size(44, 16);
+            this.labelReqOficial.TabIndex = 3;
+            this.labelReqOficial.Text = "Oficial";
             // 
-            // label5
+            // labelReqData
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(146, 324);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 16);
-            this.label5.TabIndex = 4;
-            this.label5.Text = "label5";
+            this.labelReqData.AutoSize = true;
+            this.labelReqData.Location = new System.Drawing.Point(146, 324);
+            this.labelReqData.Name = "labelReqData";
+            this.labelReqData.Size = new System.Drawing.Size(36, 16);
+            this.labelReqData.TabIndex = 4;
+            this.labelReqData.Text = "Data";
             // 
-            // button1
+            // buttonReqInserir
             // 
-            this.button1.Location = new System.Drawing.Point(212, 380);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonReqInserir.Location = new System.Drawing.Point(212, 380);
+            this.buttonReqInserir.Name = "buttonReqInserir";
+            this.buttonReqInserir.Size = new System.Drawing.Size(153, 23);
+            this.buttonReqInserir.TabIndex = 5;
+            this.buttonReqInserir.Text = "Inserir Requisição";
+            this.buttonReqInserir.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -147,12 +147,12 @@
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonReqInserir);
+            this.Controls.Add(this.labelReqData);
+            this.Controls.Add(this.labelReqOficial);
+            this.Controls.Add(this.labelReqCond);
+            this.Controls.Add(this.labelReqVeiculo);
+            this.Controls.Add(this.labelReq);
             this.Name = "FormRequisições";
             this.Text = "FormRequisições";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -163,12 +163,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label labelReq;
+        private System.Windows.Forms.Label labelReqVeiculo;
+        private System.Windows.Forms.Label labelReqCond;
+        private System.Windows.Forms.Label labelReqOficial;
+        private System.Windows.Forms.Label labelReqData;
+        private System.Windows.Forms.Button buttonReqInserir;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.ComboBox comboBox2;
