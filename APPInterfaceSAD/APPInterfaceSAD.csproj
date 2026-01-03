@@ -53,13 +53,28 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Cargo.cs" />
+    <Compile Include="Models\Classe.cs" />
+    <Compile Include="Models\CodigoPostal.cs" />
+    <Compile Include="Models\Condutor.cs" />
     <Compile Include="Models\Contacto.cs" />
+    <Compile Include="Models\Habilitacao.cs" />
+    <Compile Include="Models\Inspecoes.cs" />
+    <Compile Include="Models\Material.cs" />
+    <Compile Include="Models\Modelo.cs" />
+    <Compile Include="Models\Marcas.cs" />
+    <Compile Include="Models\Oficial.cs" />
+    <Compile Include="Models\Requisicoes.cs" />
+    <Compile Include="Models\TipoContacto.cs" />
+    <Compile Include="Models\TipoMaterial.cs" />
+    <Compile Include="Models\Veiculo.cs" />
+    <Compile Include="Models\Veiculos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\IClienteService.cs" />
     <Compile Include="Services\InMemoryClienteService.cs" />
+    <Compile Include="Services\VeiculoService.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

@@ -9,6 +9,6 @@ namespace APPInterfaceSAD.Data
     public static class Database
     {
         public static string ConnectionString =
-            @"Server=(localdb)\MSSQLLocalDB;Database=AppGestaoClientes;Trusted_Connection=True;";
+            @"Server=(localdb)\MSSQLLocalDB;Database=TrabalhoQuartelMilitarv1ComValores;Trusted_Connection=True;";
     }
 }

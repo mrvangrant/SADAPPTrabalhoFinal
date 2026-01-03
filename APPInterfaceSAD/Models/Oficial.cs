@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    public class Cliente
+    internal class Oficial
     {
-        public int ClienteId { get; set; }
-        public string Nome { get; set; } = "";
-        public string NIF { get; set; } = "";
     }
 }

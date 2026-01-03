@@ -28,98 +28,275 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBoxNIF = new System.Windows.Forms.TextBox();
-            this.cbTipoContacto = new System.Windows.Forms.ComboBox();
-            this.textBoxContacto = new System.Windows.Forms.TextBox();
+            this.dataGridViewVeiculos = new System.Windows.Forms.DataGridView();
+            this.textBoxNomeVeiculo = new System.Windows.Forms.TextBox();
+            this.textBoxLotação = new System.Windows.Forms.TextBox();
+            this.textBoxTara = new System.Windows.Forms.TextBox();
+            this.textBoxRua = new System.Windows.Forms.TextBox();
+            this.cbClasse = new System.Windows.Forms.ComboBox();
             this.buttonInserir = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btAtualizar = new System.Windows.Forms.Button();
+            this.cbEstado = new System.Windows.Forms.ComboBox();
+            this.textBoxModelo = new System.Windows.Forms.TextBox();
+            this.textBoxMarca = new System.Windows.Forms.TextBox();
+            this.textBoxCP = new System.Windows.Forms.TextBox();
+            this.labelNomeVeiculo = new System.Windows.Forms.Label();
+            this.labelLot = new System.Windows.Forms.Label();
+            this.labelTar = new System.Windows.Forms.Label();
+            this.labelModel = new System.Windows.Forms.Label();
+            this.labelMarca = new System.Windows.Forms.Label();
+            this.labelEstado = new System.Windows.Forms.Label();
+            this.labelClasse = new System.Windows.Forms.Label();
+            this.labelRua = new System.Windows.Forms.Label();
+            this.labelCP = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVeiculos)).BeginInit();
             this.SuspendLayout();
             // 
-            // textBox1
+            // dataGridViewVeiculos
             // 
-            this.textBox1.Location = new System.Drawing.Point(94, 42);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(210, 22);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "Nome do cliente";
+            this.dataGridViewVeiculos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridViewVeiculos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewVeiculos.Location = new System.Drawing.Point(26, 493);
+            this.dataGridViewVeiculos.Name = "dataGridViewVeiculos";
+            this.dataGridViewVeiculos.ReadOnly = true;
+            this.dataGridViewVeiculos.RowHeadersWidth = 51;
+            this.dataGridViewVeiculos.RowTemplate.Height = 24;
+            this.dataGridViewVeiculos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewVeiculos.Size = new System.Drawing.Size(1708, 231);
+            this.dataGridViewVeiculos.TabIndex = 5;
             // 
-            // textBoxNIF
+            // textBoxNomeVeiculo
             // 
-            this.textBoxNIF.Location = new System.Drawing.Point(94, 79);
-            this.textBoxNIF.Name = "textBoxNIF";
-            this.textBoxNIF.Size = new System.Drawing.Size(210, 22);
-            this.textBoxNIF.TabIndex = 1;
-            this.textBoxNIF.Text = "NIF";
+            this.textBoxNomeVeiculo.Location = new System.Drawing.Point(160, 31);
+            this.textBoxNomeVeiculo.Name = "textBoxNomeVeiculo";
+            this.textBoxNomeVeiculo.Size = new System.Drawing.Size(193, 22);
+            this.textBoxNomeVeiculo.TabIndex = 6;
+            this.textBoxNomeVeiculo.Text = "Nome do Veiculo";
+            this.textBoxNomeVeiculo.TextChanged += new System.EventHandler(this.textBoxNomeVeiculo_TextChanged);
             // 
-            // cbTipoContacto
+            // textBoxLotação
             // 
-            this.cbTipoContacto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbTipoContacto.FormattingEnabled = true;
-            this.cbTipoContacto.Location = new System.Drawing.Point(94, 122);
-            this.cbTipoContacto.Name = "cbTipoContacto";
-            this.cbTipoContacto.Size = new System.Drawing.Size(210, 24);
-            this.cbTipoContacto.TabIndex = 2;
+            this.textBoxLotação.Location = new System.Drawing.Point(160, 81);
+            this.textBoxLotação.Name = "textBoxLotação";
+            this.textBoxLotação.Size = new System.Drawing.Size(193, 22);
+            this.textBoxLotação.TabIndex = 7;
+            this.textBoxLotação.Text = "Lotação";
             // 
-            // textBoxContacto
+            // textBoxTara
             // 
-            this.textBoxContacto.Location = new System.Drawing.Point(94, 170);
-            this.textBoxContacto.Name = "textBoxContacto";
-            this.textBoxContacto.Size = new System.Drawing.Size(210, 22);
-            this.textBoxContacto.TabIndex = 3;
-            this.textBoxContacto.Text = "Contacto";
+            this.textBoxTara.Location = new System.Drawing.Point(160, 129);
+            this.textBoxTara.Name = "textBoxTara";
+            this.textBoxTara.Size = new System.Drawing.Size(193, 22);
+            this.textBoxTara.TabIndex = 8;
+            this.textBoxTara.Text = "Tara";
+            // 
+            // textBoxRua
+            // 
+            this.textBoxRua.Location = new System.Drawing.Point(160, 338);
+            this.textBoxRua.Name = "textBoxRua";
+            this.textBoxRua.Size = new System.Drawing.Size(193, 22);
+            this.textBoxRua.TabIndex = 10;
+            this.textBoxRua.Text = "Rua";
+            // 
+            // cbClasse
+            // 
+            this.cbClasse.FormattingEnabled = true;
+            this.cbClasse.Location = new System.Drawing.Point(160, 295);
+            this.cbClasse.Name = "cbClasse";
+            this.cbClasse.Size = new System.Drawing.Size(193, 24);
+            this.cbClasse.TabIndex = 11;
+            this.cbClasse.Text = "Classe";
             // 
             // buttonInserir
             // 
-            this.buttonInserir.Location = new System.Drawing.Point(94, 211);
+            this.buttonInserir.Location = new System.Drawing.Point(160, 433);
             this.buttonInserir.Name = "buttonInserir";
-            this.buttonInserir.Size = new System.Drawing.Size(115, 23);
-            this.buttonInserir.TabIndex = 4;
-            this.buttonInserir.Text = "Inserir Cliente";
+            this.buttonInserir.Size = new System.Drawing.Size(75, 23);
+            this.buttonInserir.TabIndex = 15;
+            this.buttonInserir.Text = "Inserir";
             this.buttonInserir.UseVisualStyleBackColor = true;
-            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click);
+            this.buttonInserir.Click += new System.EventHandler(this.buttonInserir_Click_1);
             // 
-            // dataGridView1
+            // btAtualizar
             // 
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(94, 260);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1207, 464);
-            this.dataGridView1.TabIndex = 5;
+            this.btAtualizar.Location = new System.Drawing.Point(264, 433);
+            this.btAtualizar.Name = "btAtualizar";
+            this.btAtualizar.Size = new System.Drawing.Size(75, 23);
+            this.btAtualizar.TabIndex = 16;
+            this.btAtualizar.Text = "Atualizar";
+            this.btAtualizar.UseVisualStyleBackColor = true;
+            // 
+            // cbEstado
+            // 
+            this.cbEstado.FormattingEnabled = true;
+            this.cbEstado.Location = new System.Drawing.Point(160, 254);
+            this.cbEstado.Name = "cbEstado";
+            this.cbEstado.Size = new System.Drawing.Size(193, 24);
+            this.cbEstado.TabIndex = 17;
+            this.cbEstado.Text = "Estado";
+            // 
+            // textBoxModelo
+            // 
+            this.textBoxModelo.Location = new System.Drawing.Point(160, 172);
+            this.textBoxModelo.Name = "textBoxModelo";
+            this.textBoxModelo.Size = new System.Drawing.Size(193, 22);
+            this.textBoxModelo.TabIndex = 18;
+            this.textBoxModelo.Text = "Modelo";
+            // 
+            // textBoxMarca
+            // 
+            this.textBoxMarca.Location = new System.Drawing.Point(160, 214);
+            this.textBoxMarca.Name = "textBoxMarca";
+            this.textBoxMarca.Size = new System.Drawing.Size(193, 22);
+            this.textBoxMarca.TabIndex = 19;
+            this.textBoxMarca.Text = "Marca";
+            // 
+            // textBoxCP
+            // 
+            this.textBoxCP.Location = new System.Drawing.Point(160, 384);
+            this.textBoxCP.Name = "textBoxCP";
+            this.textBoxCP.Size = new System.Drawing.Size(193, 22);
+            this.textBoxCP.TabIndex = 20;
+            this.textBoxCP.Text = "Codigo Postal";
+            // 
+            // labelNomeVeiculo
+            // 
+            this.labelNomeVeiculo.AutoSize = true;
+            this.labelNomeVeiculo.Location = new System.Drawing.Point(23, 34);
+            this.labelNomeVeiculo.Name = "labelNomeVeiculo";
+            this.labelNomeVeiculo.Size = new System.Drawing.Size(111, 16);
+            this.labelNomeVeiculo.TabIndex = 21;
+            this.labelNomeVeiculo.Text = "Nome do Veiculo";
+            this.labelNomeVeiculo.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // labelLot
+            // 
+            this.labelLot.AutoSize = true;
+            this.labelLot.Location = new System.Drawing.Point(26, 81);
+            this.labelLot.Name = "labelLot";
+            this.labelLot.Size = new System.Drawing.Size(56, 16);
+            this.labelLot.TabIndex = 22;
+            this.labelLot.Text = "Lotação";
+            // 
+            // labelTar
+            // 
+            this.labelTar.AutoSize = true;
+            this.labelTar.Location = new System.Drawing.Point(26, 134);
+            this.labelTar.Name = "labelTar";
+            this.labelTar.Size = new System.Drawing.Size(36, 16);
+            this.labelTar.TabIndex = 23;
+            this.labelTar.Text = "Tara";
+            // 
+            // labelModel
+            // 
+            this.labelModel.AutoSize = true;
+            this.labelModel.Location = new System.Drawing.Point(26, 175);
+            this.labelModel.Name = "labelModel";
+            this.labelModel.Size = new System.Drawing.Size(53, 16);
+            this.labelModel.TabIndex = 24;
+            this.labelModel.Text = "Modelo";
+            // 
+            // labelMarca
+            // 
+            this.labelMarca.AutoSize = true;
+            this.labelMarca.Location = new System.Drawing.Point(26, 219);
+            this.labelMarca.Name = "labelMarca";
+            this.labelMarca.Size = new System.Drawing.Size(45, 16);
+            this.labelMarca.TabIndex = 25;
+            this.labelMarca.Text = "Marca";
+            // 
+            // labelEstado
+            // 
+            this.labelEstado.AutoSize = true;
+            this.labelEstado.Location = new System.Drawing.Point(26, 254);
+            this.labelEstado.Name = "labelEstado";
+            this.labelEstado.Size = new System.Drawing.Size(50, 16);
+            this.labelEstado.TabIndex = 26;
+            this.labelEstado.Text = "Estado";
+            // 
+            // labelClasse
+            // 
+            this.labelClasse.AutoSize = true;
+            this.labelClasse.Location = new System.Drawing.Point(26, 302);
+            this.labelClasse.Name = "labelClasse";
+            this.labelClasse.Size = new System.Drawing.Size(49, 16);
+            this.labelClasse.TabIndex = 27;
+            this.labelClasse.Text = "Classe";
+            // 
+            // labelRua
+            // 
+            this.labelRua.AutoSize = true;
+            this.labelRua.Location = new System.Drawing.Point(26, 343);
+            this.labelRua.Name = "labelRua";
+            this.labelRua.Size = new System.Drawing.Size(32, 16);
+            this.labelRua.TabIndex = 28;
+            this.labelRua.Text = "Rua";
+            // 
+            // labelCP
+            // 
+            this.labelCP.AutoSize = true;
+            this.labelCP.Location = new System.Drawing.Point(29, 389);
+            this.labelCP.Name = "labelCP";
+            this.labelCP.Size = new System.Drawing.Size(92, 16);
+            this.labelCP.TabIndex = 29;
+            this.labelCP.Text = "Código Postal";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1332, 736);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(1782, 736);
+            this.Controls.Add(this.labelCP);
+            this.Controls.Add(this.labelRua);
+            this.Controls.Add(this.labelClasse);
+            this.Controls.Add(this.labelEstado);
+            this.Controls.Add(this.labelMarca);
+            this.Controls.Add(this.labelModel);
+            this.Controls.Add(this.labelTar);
+            this.Controls.Add(this.labelLot);
+            this.Controls.Add(this.labelNomeVeiculo);
+            this.Controls.Add(this.textBoxCP);
+            this.Controls.Add(this.textBoxMarca);
+            this.Controls.Add(this.textBoxModelo);
+            this.Controls.Add(this.cbEstado);
+            this.Controls.Add(this.btAtualizar);
             this.Controls.Add(this.buttonInserir);
-            this.Controls.Add(this.textBoxContacto);
-            this.Controls.Add(this.cbTipoContacto);
-            this.Controls.Add(this.textBoxNIF);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cbClasse);
+            this.Controls.Add(this.textBoxRua);
+            this.Controls.Add(this.textBoxTara);
+            this.Controls.Add(this.textBoxLotação);
+            this.Controls.Add(this.textBoxNomeVeiculo);
+            this.Controls.Add(this.dataGridViewVeiculos);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewVeiculos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBoxNIF;
-        private System.Windows.Forms.ComboBox cbTipoContacto;
-        private System.Windows.Forms.TextBox textBoxContacto;
+        private System.Windows.Forms.DataGridView dataGridViewVeiculos;
+        private System.Windows.Forms.TextBox textBoxNomeVeiculo;
+        private System.Windows.Forms.TextBox textBoxLotação;
+        private System.Windows.Forms.TextBox textBoxTara;
+        private System.Windows.Forms.TextBox textBoxRua;
+        private System.Windows.Forms.ComboBox cbClasse;
         private System.Windows.Forms.Button buttonInserir;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btAtualizar;
+        private System.Windows.Forms.ComboBox cbEstado;
+        private System.Windows.Forms.TextBox textBoxModelo;
+        private System.Windows.Forms.TextBox textBoxMarca;
+        private System.Windows.Forms.TextBox textBoxCP;
+        private System.Windows.Forms.Label labelNomeVeiculo;
+        private System.Windows.Forms.Label labelLot;
+        private System.Windows.Forms.Label labelTar;
+        private System.Windows.Forms.Label labelModel;
+        private System.Windows.Forms.Label labelMarca;
+        private System.Windows.Forms.Label labelEstado;
+        private System.Windows.Forms.Label labelClasse;
+        private System.Windows.Forms.Label labelRua;
+        private System.Windows.Forms.Label labelCP;
     }
 }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace APPInterfaceSAD.Models
 {
-    public class Contacto
+    internal class TipoMaterial
     {
     }
 }
