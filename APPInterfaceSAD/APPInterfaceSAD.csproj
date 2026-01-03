@@ -53,6 +53,24 @@
     <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormInspeções.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormInspeções.Designer.cs">
+      <DependentUpon>FormInspeções.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormMenu.Designer.cs">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FormRequisições.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormRequisições.Designer.cs">
+      <DependentUpon>FormRequisições.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Cargo.cs" />
     <Compile Include="Models\Classe.cs" />
     <Compile Include="Models\CodigoPostal.cs" />
@@ -76,6 +94,15 @@
     <Compile Include="Services\VeiculoService.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormInspeções.resx">
+      <DependentUpon>FormInspeções.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormMenu.resx">
+      <DependentUpon>FormMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormRequisições.resx">
+      <DependentUpon>FormRequisições.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
