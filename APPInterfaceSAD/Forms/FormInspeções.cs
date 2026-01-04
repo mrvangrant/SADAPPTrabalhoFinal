@@ -36,7 +36,7 @@ namespace APPInterfaceSAD.Forms
 
                 var materiais = _service.ObterMateriais();
                 comboBoxInspMat.DisplayMember = "DescMat";
-                comboBoxInspMat.ValueMember = "MaterialID";
+                comboBoxInspMat.ValueMember = "MatID"; // composite PK uses MatID
                 comboBoxInspMat.DataSource = materiais;
             }
             catch (Exception ex)
@@ -56,14 +56,6 @@ namespace APPInterfaceSAD.Forms
                 dataGridViewInsp.AutoGenerateColumns = false;
                 dataGridViewInsp.Columns.Clear();
 
-                dataGridViewInsp.Columns.Add(new DataGridViewTextBoxColumn
-                {
-                    DataPropertyName = "InspID",
-                    HeaderText = "ID",
-                    Name = "colInspID",
-                    ReadOnly = true,
-                    AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-                });
                 dataGridViewInsp.Columns.Add(new DataGridViewTextBoxColumn
                 {
                     DataPropertyName = "DataInsp",
@@ -125,8 +117,10 @@ namespace APPInterfaceSAD.Forms
 
             try
             {
-                int newId = _service.InserirInspecao(dataInsp, vid, mat);
-                MessageBox.Show(this, $"Inspeção registada com ID {newId}.", "Sucesso",
+                _service.InserirInspecao(dataInsp, vid, mat);
+                MessageBox.Show(this,
+                    $"Inspeção registada para Vid={vid}, MatID={mat}.",
+                    "Sucesso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadGrid();
             }

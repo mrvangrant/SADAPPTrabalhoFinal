@@ -7,15 +7,16 @@ namespace APPInterfaceSAD.Services
 {
     internal class InspeçõesService
     {
-        // List inspections with readable names
+        // LISTAR INSPEÇÕES (QUERY ELABORADA)
         public DataTable ObterInspecoes()
         {
             const string sql =
-                "SELECT i.InspID, i.InspID AS InsID, i.DataInsp, i.Vid, i.MatID, i.MatID AS MaterialID, " +
-                "v.NomeVeiculo AS Veiculo, m.DescMat AS Material " +
+                "SELECT i.DataInsp, " +
+                "v.Vid, v.NomeVeiculo AS Veiculo, " +
+                "m.MatID, m.DescMat AS Material " +
                 "FROM Inspecoes i " +
                 "INNER JOIN Veiculo v ON i.Vid = v.Vid " +
-                "INNER JOIN Material m ON i.MatID = m.MaterialID";
+                "INNER JOIN Material m ON i.MatID = m.MatID";
 
             using (var con = new SqlConnection(Database.ConnectionString))
             using (var da = new SqlDataAdapter(sql, con))
@@ -26,10 +27,11 @@ namespace APPInterfaceSAD.Services
             }
         }
 
-        // Combos
+        // COMBO VEÍCULOS
         public DataTable ObterVeiculosLite()
         {
             const string sql = "SELECT Vid, NomeVeiculo FROM Veiculo";
+
             using (var con = new SqlConnection(Database.ConnectionString))
             using (var da = new SqlDataAdapter(sql, con))
             {
@@ -39,9 +41,11 @@ namespace APPInterfaceSAD.Services
             }
         }
 
+        // COMBO MATERIAIS
         public DataTable ObterMateriais()
         {
-            const string sql = "SELECT MaterialID, DescMat FROM Material";
+            const string sql = "SELECT MatID, DescMat FROM Material";
+
             using (var con = new SqlConnection(Database.ConnectionString))
             using (var da = new SqlDataAdapter(sql, con))
             {
@@ -51,32 +55,34 @@ namespace APPInterfaceSAD.Services
             }
         }
 
-        // Create
-        public int InserirInspecao(DateTime? dataInsp, int vid, int materialId)
+        // INSERIR INSPEÇÃO (sem ID de retorno; PK composta Vid+MatID)
+        public void InserirInspecao(DateTime? dataInsp, int vid, int matId)
         {
             const string sql =
-                "INSERT INTO Inspecoes (DataInsp, Vid, MatID) " +
-                "OUTPUT INSERTED.InspID VALUES (@DataInsp, @Vid, @MatID)";
+                "INSERT INTO Inspecoes (Vid, MatID, DataInsp) " +
+                "VALUES (@Vid, @MatID, @DataInsp)";
 
             using (var con = new SqlConnection(Database.ConnectionString))
             using (var cmd = new SqlCommand(sql, con))
             {
                 con.Open();
-                ValidateFks(con, vid, materialId);
+                ValidateFks(con, vid, matId);
 
-                cmd.Parameters.AddWithValue("@DataInsp", (object)dataInsp ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Vid", vid);
-                cmd.Parameters.AddWithValue("@MatID", materialId);
+                cmd.Parameters.AddWithValue("@MatID", matId);
+                cmd.Parameters.AddWithValue("@DataInsp", (object)dataInsp ?? DBNull.Value);
 
-                return (int)cmd.ExecuteScalar();
+                cmd.ExecuteNonQuery();
             }
         }
 
-        private static void ValidateFks(SqlConnection con, int vid, int materialId)
+        // VALIDAR FKs
+        private static void ValidateFks(SqlConnection con, int vid, int matId)
         {
-            if (vid <= 0 || !Exists(con, "SELECT COUNT(1) FROM Veiculo WHERE Vid=@id", vid))
+            if (!Exists(con, "SELECT COUNT(1) FROM Veiculo WHERE Vid=@id", vid))
                 throw new InvalidOperationException("Veículo inválido.");
-            if (materialId <= 0 || !Exists(con, "SELECT COUNT(1) FROM Material WHERE MaterialID=@id", materialId))
+
+            if (!Exists(con, "SELECT COUNT(1) FROM Material WHERE MatID=@id", matId))
                 throw new InvalidOperationException("Material inválido.");
         }
 
