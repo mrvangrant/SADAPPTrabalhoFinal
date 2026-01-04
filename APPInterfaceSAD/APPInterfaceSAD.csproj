@@ -91,6 +91,7 @@
     <Compile Include="Services\ClientService.cs" />
     <Compile Include="Services\IClienteService.cs" />
     <Compile Include="Services\InMemoryClienteService.cs" />
+    <Compile Include="Services\InspeçõesService.cs" />
     <Compile Include="Services\RequisiçõesService.cs" />
     <Compile Include="Services\VeiculoService.cs" />
     <EmbeddedResource Include="Forms\Form1.resx">

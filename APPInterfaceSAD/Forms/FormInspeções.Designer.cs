@@ -33,11 +33,11 @@
             this.labelInspMat = new System.Windows.Forms.Label();
             this.labeInspData = new System.Windows.Forms.Label();
             this.buttonRegInsp = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewInsp = new System.Windows.Forms.DataGridView();
             this.comboBoxInspVehi = new System.Windows.Forms.ComboBox();
             this.comboBoxInspMat = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.dateTimePickerInsp = new System.Windows.Forms.DateTimePicker();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInsp)).BeginInit();
             this.SuspendLayout();
             // 
             // labelInspMenu
@@ -85,15 +85,15 @@
             this.buttonRegInsp.Text = "Registar Inspeção";
             this.buttonRegInsp.UseVisualStyleBackColor = true;
             // 
-            // dataGridView1
+            // dataGridViewInsp
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(22, 465);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(986, 150);
-            this.dataGridView1.TabIndex = 6;
+            this.dataGridViewInsp.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewInsp.Location = new System.Drawing.Point(22, 465);
+            this.dataGridViewInsp.Name = "dataGridViewInsp";
+            this.dataGridViewInsp.RowHeadersWidth = 51;
+            this.dataGridViewInsp.RowTemplate.Height = 24;
+            this.dataGridViewInsp.Size = new System.Drawing.Size(986, 150);
+            this.dataGridViewInsp.TabIndex = 6;
             // 
             // comboBoxInspVehi
             // 
@@ -111,22 +111,22 @@
             this.comboBoxInspMat.Size = new System.Drawing.Size(121, 24);
             this.comboBoxInspMat.TabIndex = 8;
             // 
-            // dateTimePicker1
+            // dateTimePickerInsp
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(256, 276);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 22);
-            this.dateTimePicker1.TabIndex = 10;
+            this.dateTimePickerInsp.Location = new System.Drawing.Point(256, 276);
+            this.dateTimePickerInsp.Name = "dateTimePickerInsp";
+            this.dateTimePickerInsp.Size = new System.Drawing.Size(200, 22);
+            this.dateTimePickerInsp.TabIndex = 10;
             // 
             // FormInspeções
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1735, 731);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerInsp);
             this.Controls.Add(this.comboBoxInspMat);
             this.Controls.Add(this.comboBoxInspVehi);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridViewInsp);
             this.Controls.Add(this.buttonRegInsp);
             this.Controls.Add(this.labeInspData);
             this.Controls.Add(this.labelInspMat);
@@ -134,7 +134,7 @@
             this.Controls.Add(this.labelInspMenu);
             this.Name = "FormInspeções";
             this.Text = "FormInspeções";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInsp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,9 +147,9 @@
         private System.Windows.Forms.Label labelInspMat;
         private System.Windows.Forms.Label labeInspData;
         private System.Windows.Forms.Button buttonRegInsp;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridViewInsp;
         private System.Windows.Forms.ComboBox comboBoxInspVehi;
         private System.Windows.Forms.ComboBox comboBoxInspMat;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimePickerInsp;
     }
 }
