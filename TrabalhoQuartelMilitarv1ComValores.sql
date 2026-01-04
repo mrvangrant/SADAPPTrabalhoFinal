@@ -1,4 +1,4 @@
-﻿CREATE TABLE Veiculo (
+CREATE TABLE Veiculo (
   Vid         int IDENTITY NOT NULL, 
   NomeVeiculo varchar(255) NULL, 
   lotacao     int NULL, 
@@ -180,3 +180,69 @@ INSERT INTO Requisicoes (DataReq, CondutorID, Vid, OficialID) VALUES
 ('2024-05-15 09:00:00', 2, 4, 3),  -- Soldado João Rato levou Camião Logístico (Major Maria)
 ('2024-05-16 11:20:00', 3, 1, 4),  -- Sargento Pedro Lima levou Viatura Tática 01 (Capitão Ricardo)
 ('2024-05-17 05:30:00', 1, 2, 2);  -- Cabo Manuel Silva levou Transporte Tropas A (Ten-Coronel Carlos)
+
+-- =============================================
+-- 6. INSERIR TIPOS DE MATERIAL
+-- =============================================
+
+INSERT INTO TipoMaterial (DescTM) VALUES
+('Ferramenta'),
+('Equipamento Eletrónico'),
+('Segurança'),
+('Manutenção');
+
+-- =============================================
+-- 7. INSERIR MATERIAIS
+-- =============================================
+
+INSERT INTO Material (DescMat, TMID) VALUES
+('Extintor de Incêndio', 3),
+('Kit Primeiros Socorros', 3),
+('Macaco Hidráulico', 1),
+('Chave de Rodas', 1),
+('Sistema GPS', 2),
+('Rádio Comunicação', 2),
+('Óleo Motor', 4),
+('Filtro de Ar', 4);
+
+-- =============================================
+-- 8. INSERIR INSPEÇÕES
+-- =============================================
+
+INSERT INTO Inspecoes (Vid, MatID, DataInsp) VALUES
+(1, 1, '2024-04-01'),
+(1, 2, '2024-04-01'),
+(2, 3, '2024-04-05'),
+(3, 4, '2024-04-10'),
+(4, 5, '2024-04-12'),
+(5, 6, '2024-04-15'),
+(6, 7, '2024-04-18'),
+(7, 8, '2024-04-20'),
+(8, 1, '2024-04-22'),
+(9, 3, '2024-04-25'),
+(10, 2, '2024-04-28');
+
+
+/*SELECT
+    v.NomeVeiculo,
+    m.DescMat,
+    tm.DescTM,
+    i.DataInsp
+FROM Inspecoes i
+JOIN Veiculo v ON i.Vid = v.Vid
+JOIN Material m ON i.MatID = m.MatID
+JOIN TipoMaterial tm ON m.TMID = tm.TMID
+ORDER BY i.DataInsp DESC;
+UPDATE Veiculo
+
+SET
+    NomeVeiculo = @NomeVeiculo,
+    lotacao     = @Lotacao,
+    tara        = @Tara,
+    CP          = @CP,
+    Rua         = @Rua,
+    Estado      = @Estado,
+    Cid         = @Cid,
+    ModID       = @ModID,
+    CPCP        = @CPCP
+WHERE Vid = @Vid;
