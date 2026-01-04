@@ -15,6 +15,7 @@ namespace APPInterfaceSAD.Forms
 
             // Wire actions
             buttonRegInsp.Click += buttonRegInsp_Click;
+            comboBoxInspVehi.SelectedValueChanged += comboBoxInspVehi_SelectedValueChanged;
 
             // Grid setup
             dataGridViewInsp.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -48,11 +49,39 @@ namespace APPInterfaceSAD.Forms
             LoadGrid();
         }
 
+        private void comboBoxInspVehi_SelectedValueChanged(object sender, EventArgs e)
+        {
+            LoadGrid();
+        }
+
         private void LoadGrid()
         {
             try
             {
-                var dt = _service.ObterInspecoes();
+                int vid = comboBoxInspVehi.SelectedValue is int v ? v : 0;
+                string veiculoNome = (comboBoxInspVehi.Text ?? string.Empty).Trim();
+
+                var dt = (vid > 0)
+                    ? _service.ObterInspecoesPorVeiculo(vid)
+                    : new DataTable();
+
+                // Fallbacks: ensure Veiculo (and Vid) columns exist for binding
+                if (dt != null)
+                {
+                    if (!dt.Columns.Contains("Veiculo"))
+                        dt.Columns.Add("Veiculo", typeof(string));
+                    if (!dt.Columns.Contains("Vid"))
+                        dt.Columns.Add("Vid", typeof(int));
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row["Veiculo"] == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(row["Veiculo"])))
+                            row["Veiculo"] = veiculoNome;
+                        if (row["Vid"] == DBNull.Value || (row["Vid"] is int rvid && rvid == 0))
+                            row["Vid"] = vid;
+                    }
+                }
+
                 dataGridViewInsp.AutoGenerateColumns = false;
                 dataGridViewInsp.Columns.Clear();
 

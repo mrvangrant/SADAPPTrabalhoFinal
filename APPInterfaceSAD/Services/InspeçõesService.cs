@@ -7,20 +7,16 @@ namespace APPInterfaceSAD.Services
 {
     internal class InspeçõesService
     {
-        // LISTAR INSPEÇÕES (QUERY ELABORADA)
-        public DataTable ObterInspecoes()
+        // LISTAR INSPEÇÕES POR VEÍCULO (Stored Procedure)
+        public DataTable ObterInspecoesPorVeiculo(int vid)
         {
-            const string sql =
-                "SELECT i.DataInsp, " +
-                "v.Vid, v.NomeVeiculo AS Veiculo, " +
-                "m.MatID, m.DescMat AS Material " +
-                "FROM Inspecoes i " +
-                "INNER JOIN Veiculo v ON i.Vid = v.Vid " +
-                "INNER JOIN Material m ON i.MatID = m.MatID";
-
             using (var con = new SqlConnection(Database.ConnectionString))
-            using (var da = new SqlDataAdapter(sql, con))
+            using (var cmd = new SqlCommand("dbo.sp_InspecoesPorVeiculo", con))
+            using (var da = new SqlDataAdapter(cmd))
             {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Vid", vid);
+
                 var dt = new DataTable();
                 da.Fill(dt);
                 return dt;
