@@ -222,6 +222,24 @@ INSERT INTO Inspecoes (Vid, MatID, DataInsp) VALUES
 (9, 3, '2024-04-25'),
 (10, 2, '2024-04-28');
 
+CREATE PROCEDURE sp_InspecoesPorVeiculo
+    @Vid INT
+AS
+BEGIN
+    SELECT
+        v.NomeVeiculo,
+        m.DescMat AS Material,
+        tm.DescTM AS TipoMaterial,
+        i.DataInsp
+    FROM Inspecoes i
+    INNER JOIN Veiculo v ON i.Vid = v.Vid
+    INNER JOIN Material m ON i.MatID = m.MatID
+    INNER JOIN TipoMaterial tm ON m.TMID = tm.TMID
+    WHERE i.Vid = @Vid
+    ORDER BY i.DataInsp DESC
+END;
+
+
 
 /*SELECT
     v.NomeVeiculo,
